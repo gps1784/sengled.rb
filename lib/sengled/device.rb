@@ -10,14 +10,14 @@ module Sengled
       str = "#<#{self.class.name}:#{@raw['deviceUuid']} "
       str << @raw['attributes']['name'].inspect << " "
       if( @raw['attributes']['isOnline'] == '0' )
-        str << ColorizedString["OFFLINE"].white.on_red << " "
+        str << ColorizedString[" OFFLINE "].white.on_red << " "
       else
-        str << ColorizedString["ONLINE"].black.on_green << " "
+        str << ColorizedString[" ONLINE "].black.on_green << " "
       end
       if( @raw['attributes']['onoff'] == '0' )
-        str << ColorizedString["OFF"].white.on_red
+        str << ColorizedString[" OFF "].white.on_red
       else
-        str << ColorizedString["ON"].black.on_green
+        str << ColorizedString[" ON "].black.on_green
       end
       str << ">"
     end # inspect()

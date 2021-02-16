@@ -22,9 +22,9 @@ module Sengled
     def inspect()
       str = "#<#{self.class.name}: "
       if( @session )
-        str << ColorizedString["@session:ACTIVE"].black.on_green
+        str << ColorizedString[" @session:ACTIVE "].black.on_green
       else
-        str << ColorizedString["@session:INACTIVE"].white.on_red
+        str << ColorizedString[" @session:INACTIVE "].white.on_red
       end
       str << ">"
     end # inspect()
