@@ -68,14 +68,17 @@ module Sengled
       response = Net::HTTP.start(url.host, url.port, use_ssl: use_ssl) do |https|
         request = Net::HTTP::Post.new(url)
         if( @session )
+          puts "Using existing cookie: #{@session.inspect}"
           request['Cookie'] = @session
-        end
+        end # if @session
         request['Content-Type'] = 'application/json'
         request.body            = body.to_json
         https.request(request)
       end # Net::HTTP.start()
-      @session = response['Set-Cookie']
-      #puts response.to_hash.inspect, response.body
+      if( response['Set-Cookie'] )
+        puts "New cookie: #{response['Set-Cookie'].inspect}"
+        @session = response['Set-Cookie']
+      end # if response['Set-Cookie']
       return response
     end # post()
   end # class API
