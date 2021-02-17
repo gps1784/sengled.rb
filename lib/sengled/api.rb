@@ -6,17 +6,23 @@ require 'pp'
 require 'colorized_string'
 
 require 'sengled/device'
+require 'sengled/device/commands'
+require 'sengled/errors'
 
 module Sengled
   class API
 
     SENGLED_URL = "https://element.cloud.sengled.com/zigbee/"
 
-    def initialize(username:, password:, session: nil)
+    def initialize(username: nil, password: nil, session: nil, skip_login: false)
       @devices  = nil
       @session  = session # data from 'cookie'/'set-cookie'
-      puts inspect()
-      login(username: username, password: password)
+      if( !skip_login )
+        if( username.nil? || password.nil?)
+          raise(APIError, "Either skip_login: must be true or username: and password: must be provided")
+        end
+        login(username: username, password: password)
+      end
     end # initialize()
 
     def inspect()
@@ -31,7 +37,7 @@ module Sengled
 
     def login(username:, password:, force: false)
       if( !@session || force )
-        response = post(path: "customer/login.json",
+        post(path: "customer/login.json",
           # parameters of post
           "os_type": "android",
           "user": username,
@@ -39,6 +45,7 @@ module Sengled
           "uuid": "xxxx"
         )
       end # if @seesion && !force
+      return self
     end # login()
 
     def get_device_details(force: false)
@@ -50,7 +57,7 @@ module Sengled
           devices_raw.concat(gateway["lampInfos"] || [])
         end
         @devices = devices_raw.map do |dev|
-          Sengled::Device.new(dev)
+          Sengled::Device.new(dev, api: self)
         end
         #pp devices_raw, @devices
         pp @devices
@@ -61,7 +68,57 @@ module Sengled
     alias :get_devices :get_device_details
     alias :devices     :get_device_details
 
+    def device_set_group(cmd:, devices:, **body)
+      body['cmdID'] = cmd
+      body['deviceUuidList'] = get_uuids(devices)
+      post(path: "device/deviceSetGroup.json")
+      return self
+    end # device_set_group()
+
+    alias :set_devices :device_set_group
+
+    def device_set_on_off(device:, onoff:)
+      uuid = get_uuid(device)
+      response = post(path: "device/deviceSetOnOff.json",
+        'deviceUuid': uuid,
+        'onoff': onoff
+      )
+      if( response.is_a?(Net::HTTPSuccess) )
+        device.onoff = onoff
+        return True
+      else
+        raise(APIError, "Unable to set device (#{device.inspect}) onoff (#{onoff})")
+        return False
+      end
+    end # device_set_on_off()
+
+    alias :set_device :device_set_on_off
+    alias :set_on_off :device_set_on_off
+
     private
+    def get_uuids(devices)
+      arr = []
+      if( devices === Array )
+        arr = devices.map do |device|
+          get_uuid(device)
+        end # devices.each
+      else
+        arr = [get_uuid(devices)]
+      end # if devices
+      return arr
+    end # get_uuids()
+
+    def get_uuid(device)
+      case(device)
+      when Sengled::Device
+        return device.uuid
+      when String
+        return device
+      else
+        raise(ArgumentError, "Cannot extract UUID from #{device.inspect}")
+      end # case(device)
+    end # get_uuid()
+
     def post(path:, use_ssl: true, root_path: nil, **body)
       root_path ||= SENGLED_URL
       url = URI.parse(root_path + path)
