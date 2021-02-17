@@ -18,8 +18,8 @@ module Sengled
       @devices  = nil
       @session  = session # data from 'cookie'/'set-cookie'
       if( !skip_login )
-        if( username.nil? || password.nil?)
-          raise(APIError, "Either skip_login: must be true or username: and password: must be provided")
+        if( session.nil? && (username.nil? || password.nil?) )
+          raise(APIError, "Either use `skip_login: true` OR session: OR username: and password: must be provided")
         end
         login(username: username, password: password)
       end
