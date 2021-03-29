@@ -85,10 +85,10 @@ module Sengled
       )
       if( response.is_a?(Net::HTTPSuccess) )
         device.onoff = onoff
-        return True
+        return true
       else
         raise(APIError, "Unable to set device (#{device.inspect}) onoff (#{onoff})")
-        return False
+        return false
       end
     end # device_set_on_off()
 

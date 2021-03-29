@@ -51,16 +51,23 @@ module Sengled
     # to ease programming with Sengled::Device objects
 
     def on()
-      @api.device_set_on_off(device: this, onoff: ON.to_i)
+      @api.device_set_on_off(device: self, onoff: ON.to_i)
       return self
     end # on()
 
     def off()
-      @api.device_set_on_off(device: this, onoff: OFF.to_i)
+      @api.device_set_on_off(device: self, onoff: OFF.to_i)
       return self
     end # off()
 
     def onoff=(val)
+      if(  val == OFF || val == OFF.to_i || val == 'OFF')
+        return (@raw['attributes']['onoff'] = OFF)
+      elsif(val == ON || val == ON.to_i  || val == 'ON')
+        return (@raw['attributes']['onoff'] = ON)
+      else
+        raise(DeviceError, "Cannot interpret #{val} as ON or OFF")
+      end
       return (@raw['attributes']['onoff'] = val)
     end
 

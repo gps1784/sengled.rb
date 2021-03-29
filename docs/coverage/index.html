@@ -14,7 +14,7 @@
       <img src="./assets/0.12.3/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" class="hide">
-      <div class="timestamp">Generated <abbr class="timeago" title="2021-02-17T16:20:26-05:00">2021-02-17T16:20:26-05:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2021-03-29T15:57:19-04:00">2021-03-29T15:57:19-04:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -23,14 +23,14 @@
     <span class="group_name">All Files</span>
     (<span class="covered_percent">
       <span class="red">
-  67.65%
+  66.1%
 </span>
 
      </span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         1.36
+         1.32
        </span>
     </span> hits/line
     )
@@ -43,11 +43,11 @@
   </div>
 
   <div class="t-line-summary">
-    <b>170</b> relevant lines,
-    <span class="green"><b>115</b> lines covered</span> and
-    <span class="red"><b>55</b> lines missed. </span>
+    <b>177</b> relevant lines,
+    <span class="green"><b>117</b> lines covered</span> and
+    <span class="red"><b>60</b> lines missed. </span>
     (<span class="red">
-  67.65%
+  66.1%
 </span>
 )
   </div>
@@ -94,12 +94,12 @@
         
           <tr class="t-file">
             <td class="strong t-file__name"><a href="#5dd27c06a84b97646bcbc3e9d5f43d232a6b9814" class="src_link" title="lib/sengled/device.rb">lib/sengled/device.rb</a></td>
-            <td class="red strong cell--number t-file__coverage">47.62 %</td>
-            <td class="cell--number">89</td>
-            <td class="cell--number">42</td>
+            <td class="red strong cell--number t-file__coverage">42.55 %</td>
+            <td class="cell--number">96</td>
+            <td class="cell--number">47</td>
             <td class="cell--number">20</td>
-            <td class="cell--number">22</td>
-            <td class="cell--number">0.48</td>
+            <td class="cell--number">27</td>
+            <td class="cell--number">0.43</td>
             
           </tr>
         
@@ -117,9 +117,9 @@
           <tr class="t-file">
             <td class="strong t-file__name"><a href="#af6696058989a5b16a79312aa33d77c8788e6321" class="src_link" title="lib/sengled/errors.rb">lib/sengled/errors.rb</a></td>
             <td class="green strong cell--number t-file__coverage">100.00 %</td>
-            <td class="cell--number">8</td>
-            <td class="cell--number">4</td>
-            <td class="cell--number">4</td>
+            <td class="cell--number">11</td>
+            <td class="cell--number">6</td>
+            <td class="cell--number">6</td>
             <td class="cell--number">0</td>
             <td class="cell--number">1.00</td>
             
@@ -1284,7 +1284,7 @@
 
             
 
-            <code class="ruby">        return True</code>
+            <code class="ruby">        return true</code>
           </li>
         </div>
       
@@ -1317,7 +1317,7 @@
 
             
 
-            <code class="ruby">        return False</code>
+            <code class="ruby">        return false</code>
           </li>
         </div>
       
@@ -1892,7 +1892,7 @@
     <h3>lib/sengled/device.rb</h3>
     <h4>
       <span class="red">
-  47.62%
+  42.55%
 </span>
 
       lines covered
@@ -1901,9 +1901,9 @@
     
 
     <div class="t-line-summary">
-      <b>42</b> relevant lines.
+      <b>47</b> relevant lines.
       <span class="green"><b>20</b> lines covered</span> and
-      <span class="red"><b>22</b> lines missed.</span>
+      <span class="red"><b>27</b> lines missed.</span>
     </div>
 
     
@@ -2503,7 +2503,7 @@
 
             
 
-            <code class="ruby">      @api.device_set_on_off(device: this, onoff: ON.to_i)</code>
+            <code class="ruby">      @api.device_set_on_off(device: self, onoff: ON.to_i)</code>
           </li>
         </div>
       
@@ -2558,7 +2558,7 @@
 
             
 
-            <code class="ruby">      @api.device_set_on_off(device: this, onoff: OFF.to_i)</code>
+            <code class="ruby">      @api.device_set_on_off(device: self, onoff: OFF.to_i)</code>
           </li>
         </div>
       
@@ -2613,40 +2613,40 @@
 
             
 
-            <code class="ruby">      return (@raw[&#39;attributes&#39;][&#39;onoff&#39;] = val)</code>
+            <code class="ruby">      if(  val == OFF || val == OFF.to_i || val == &#39;OFF&#39;)</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="65">
+          <li class="missed" data-hits="0" data-linenumber="65">
             
             
 
             
 
-            <code class="ruby">    end</code>
+            <code class="ruby">        return (@raw[&#39;attributes&#39;][&#39;onoff&#39;] = OFF)</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="66">
+          <li class="missed" data-hits="0" data-linenumber="66">
             
             
 
             
 
-            <code class="ruby"></code>
+            <code class="ruby">      elsif(val == ON || val == ON.to_i  || val == &#39;ON&#39;)</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="67">
+          <li class="missed" data-hits="0" data-linenumber="67">
             
             
 
             
 
-            <code class="ruby">    # inspect()</code>
+            <code class="ruby">        return (@raw[&#39;attributes&#39;][&#39;onoff&#39;] = ON)</code>
           </li>
         </div>
       
@@ -2657,18 +2657,18 @@
 
             
 
-            <code class="ruby">    # for now, this is intended to fill all the basic</code>
+            <code class="ruby">      else</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="69">
+          <li class="missed" data-hits="0" data-linenumber="69">
             
             
 
             
 
-            <code class="ruby">    # details on a single line of text, like a</code>
+            <code class="ruby">        raise(DeviceError, &quot;Cannot interpret #{val} as ON or OFF&quot;)</code>
           </li>
         </div>
       
@@ -2679,12 +2679,34 @@
 
             
 
-            <code class="ruby">    # normal `#inspect()` method</code>
+            <code class="ruby">      end</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="71">
+          <li class="missed" data-hits="0" data-linenumber="71">
+            
+            
+
+            
+
+            <code class="ruby">      return (@raw[&#39;attributes&#39;][&#39;onoff&#39;] = val)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="72">
+            
+            
+
+            
+
+            <code class="ruby">    end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="73">
             
             
 
@@ -2695,68 +2717,46 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="72">
-            <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="74">
+            
             
 
             
 
-            <code class="ruby">    def inspect()</code>
+            <code class="ruby">    # inspect()</code>
           </li>
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="73">
+          <li class="never" data-hits="" data-linenumber="75">
             
             
 
             
 
-            <code class="ruby">      str = &quot;#&lt;#{self.class.name}:#{uuid()} &quot;</code>
+            <code class="ruby">    # for now, this is intended to fill all the basic</code>
           </li>
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="74">
+          <li class="never" data-hits="" data-linenumber="76">
             
             
 
             
 
-            <code class="ruby">      str &lt;&lt; @raw[&#39;attributes&#39;][&#39;productCode&#39;] &lt;&lt; &quot; &quot;</code>
+            <code class="ruby">    # details on a single line of text, like a</code>
           </li>
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="75">
+          <li class="never" data-hits="" data-linenumber="77">
             
             
 
             
 
-            <code class="ruby">      str &lt;&lt; @raw[&#39;attributes&#39;][&#39;name&#39;].inspect &lt;&lt; &quot; &quot;</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="missed" data-hits="0" data-linenumber="76">
-            
-            
-
-            
-
-            <code class="ruby">      if( online?() )</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="missed" data-hits="0" data-linenumber="77">
-            
-            
-
-            
-
-            <code class="ruby">        str &lt;&lt; ColorizedString[&quot; ONLINE &quot;].black.on_green &lt;&lt; &quot; &quot;</code>
+            <code class="ruby">    # normal `#inspect()` method</code>
           </li>
         </div>
       
@@ -2767,29 +2767,29 @@
 
             
 
-            <code class="ruby">      else</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="79">
-            
-            
-
+          <li class="covered" data-hits="1" data-linenumber="79">
+            <span class="hits">1</span>
             
 
-            <code class="ruby">        str &lt;&lt; ColorizedString[&quot; OFFLINE &quot;].white.on_red &lt;&lt; &quot; &quot;</code>
+            
+
+            <code class="ruby">    def inspect()</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="80">
+          <li class="missed" data-hits="0" data-linenumber="80">
             
             
 
             
 
-            <code class="ruby">      end</code>
+            <code class="ruby">      str = &quot;#&lt;#{self.class.name}:#{uuid()} &quot;</code>
           </li>
         </div>
       
@@ -2800,7 +2800,7 @@
 
             
 
-            <code class="ruby">      if( on?() )</code>
+            <code class="ruby">      str &lt;&lt; @raw[&#39;attributes&#39;][&#39;productCode&#39;] &lt;&lt; &quot; &quot;</code>
           </li>
         </div>
       
@@ -2811,18 +2811,18 @@
 
             
 
-            <code class="ruby">        str &lt;&lt; ColorizedString[&quot; ON &quot;].black.on_green</code>
+            <code class="ruby">      str &lt;&lt; @raw[&#39;attributes&#39;][&#39;name&#39;].inspect &lt;&lt; &quot; &quot;</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="83">
+          <li class="missed" data-hits="0" data-linenumber="83">
             
             
 
             
 
-            <code class="ruby">      else</code>
+            <code class="ruby">      if( online?() )</code>
           </li>
         </div>
       
@@ -2833,7 +2833,7 @@
 
             
 
-            <code class="ruby">        str &lt;&lt; ColorizedString[&quot; OFF &quot;].white.on_red</code>
+            <code class="ruby">        str &lt;&lt; ColorizedString[&quot; ONLINE &quot;].black.on_green &lt;&lt; &quot; &quot;</code>
           </li>
         </div>
       
@@ -2844,7 +2844,7 @@
 
             
 
-            <code class="ruby">      end</code>
+            <code class="ruby">      else</code>
           </li>
         </div>
       
@@ -2855,7 +2855,7 @@
 
             
 
-            <code class="ruby">      str &lt;&lt; &quot;&gt;&quot;</code>
+            <code class="ruby">        str &lt;&lt; ColorizedString[&quot; OFFLINE &quot;].white.on_red &lt;&lt; &quot; &quot;</code>
           </li>
         </div>
       
@@ -2866,12 +2866,89 @@
 
             
 
+            <code class="ruby">      end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="88">
+            
+            
+
+            
+
+            <code class="ruby">      if( on?() )</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="89">
+            
+            
+
+            
+
+            <code class="ruby">        str &lt;&lt; ColorizedString[&quot; ON &quot;].black.on_green</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="90">
+            
+            
+
+            
+
+            <code class="ruby">      else</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="91">
+            
+            
+
+            
+
+            <code class="ruby">        str &lt;&lt; ColorizedString[&quot; OFF &quot;].white.on_red</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="92">
+            
+            
+
+            
+
+            <code class="ruby">      end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="93">
+            
+            
+
+            
+
+            <code class="ruby">      str &lt;&lt; &quot;&gt;&quot;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="94">
+            
+            
+
+            
+
             <code class="ruby">    end # inspect()</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="88">
+          <li class="never" data-hits="" data-linenumber="95">
             
             
 
@@ -2882,7 +2959,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="89">
+          <li class="never" data-hits="" data-linenumber="96">
             
             
 
@@ -3052,8 +3129,8 @@
     
 
     <div class="t-line-summary">
-      <b>4</b> relevant lines.
-      <span class="green"><b>4</b> lines covered</span> and
+      <b>6</b> relevant lines.
+      <span class="green"><b>6</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
 
@@ -3126,7 +3203,7 @@
 
             
 
-            <code class="ruby"></code>
+            <code class="ruby">  end # class API</code>
           </li>
         </div>
       
@@ -3137,12 +3214,45 @@
 
             
 
-            <code class="ruby">  end # class API</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="8">
+          <li class="covered" data-hits="1" data-linenumber="8">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">  class Device</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="9">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    class DeviceError &lt; Sengled::BasicError; end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="10">
+            
+            
+
+            
+
+            <code class="ruby">  end # class Device</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="11">
             
             
 

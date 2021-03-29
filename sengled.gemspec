@@ -32,6 +32,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "minitest", "~> 5.0"
   spec.add_development_dependency "benchmark-ips", "~> 2.8"
   spec.add_development_dependency "simplecov", "~> 0.21"
+  spec.add_development_dependency "rdoc", "~> 6.0"
 
   spec.add_runtime_dependency "colorize", "~> 0.8"
 end
